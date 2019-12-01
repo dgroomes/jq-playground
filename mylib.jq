@@ -11,5 +11,4 @@ def enrich(fn):
 # Like "enrich" but with an array (rather, a pipeline!) of functions that are applied
 # in order
 def enrich_pipeline(fns):
-    # How to implement this? Below is a hardcoded solution expecting "fns" is an array of size three exactly...
-    enrich(fns[0]) | enrich(fns[1]) | enrich(fns[2]);
+    reduce fns[] as $fn (.; enrich($fn));
