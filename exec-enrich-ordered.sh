@@ -19,6 +19,6 @@ echo '{ "stage_one": 1 }' | jq 'include "mylib"; . as $sub | exec_fns_foreach_ob
 # This kind of does something even better and is more DRY
 #echo '{ "stage_one": 100 }' | jq 'include "mylib"; . as $sub | exec_fns_foreach([stage_two, stage_three]; $sub)'
 
-# SUCCESS
+# SUCCESS. UPDATE: not quite actually, need a conditional check so as to only emit the last item
 #echo '{ "stage_one": 1 }' | jq 'include "mylib"; . as $sub | exec_fns_foreach_obj([stage_two, stage_three]; $sub)'
 
