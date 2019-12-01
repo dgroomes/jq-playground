@@ -18,7 +18,9 @@ def stage_two: { stage_two: (.stage_one + 1) };
 def stage_three: { stage_three: (.stage_two + 1) };
 
 def accumulate_until_ten(f):
+  { "result": 0 } as $init |
   foreach .[] as $row
-    (0;
-     . + ($row | f) ;
-     . as $res | $row | (f = $res) | if f == 10 then . else empty end);
+    ($init;
+     { result: (.result + ($row | f)) } ;
+     . as $res | $row | (f = $res) | if $res.result == 10 then . else empty end);
+
