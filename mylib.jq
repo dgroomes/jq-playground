@@ -27,3 +27,21 @@ def accumulate_until_ten(f):
 def accumulate_inverted(data):
   0 as $init | 
   foreach data[] as $datum ($init; . + $datum; .);
+
+
+def my_add_one:
+  . + 1;
+
+# Like my_add_one but adds to the value passed as an argument instead of adding to the input.
+# In fact, it complete ignores the input.
+def my_add_one_n(n):
+  n + 1;
+
+def exec(fn; target): target | fn;
+
+# Like exec, but trying to curry 
+def exec_arg0(fn; target) : target | fn;
+
+def dispatch_inverted(data_fns):
+  0 as $init |
+  foreach data_fns[] as $datum ($init; . + $datum[0]; .);
