@@ -8,18 +8,10 @@ def exec(fn; target): target | fn;
 
 def exec_fns(fns; target): target | fns[0] | fns[1];
 
-# This is hard to implement, can't figure it out!
-def exec_fns_foreach(fns; subject):
-  [range(0; (fns | length))] |
-  #foreach .[] as $entry (0; 0; $entry)
-  foreach .[] as $entry (0; . | fns[$entry]; .)
-  ;
-  #0 as $init | 999 | foreach fns[] as $fn ($init; 0 | $fn; 0);
-
 # Add the input the result of applying some function "fn" to the input
 def enrich(fn):
   . + (. | fn);
-
+  
 # Like "enrich" but with an array (rather, a pipeline!) of functions
 # NOTE: But, are they applied in order?
 def enrich_pipeline(fns):
@@ -61,3 +53,8 @@ def exec_arg0(fn; target) : target | fn;
 def dispatch_inverted(data_fns):
   0 as $init |
   foreach data_fns[] as $datum ($init; . + $datum[0]; .);
+
+# This kind of works
+def exec_fns_foreach(fns; subject):
+  [range(0; (fns | length))] |
+  foreach .[] as $entry (subject; . | fns[$entry]; .);

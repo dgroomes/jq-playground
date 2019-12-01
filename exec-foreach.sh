@@ -8,5 +8,5 @@
 # This doesn't work
 #echo '"ignored"' | jq 'include "mylib"; accumulate_inverted([my_add_one,my_add_two])'
 
-# ?
-echo '"ignored"' | jq 'include "mylib"; 999 | exec_fns_foreach([my_add_one, my_add_two, my_add_three, my_add_four]; 10)'
+# This works
+echo '10' | jq 'include "mylib"; . as $sub | exec_fns_foreach([my_add_one, my_add_two, my_add_three, my_add_four]; $sub)'
