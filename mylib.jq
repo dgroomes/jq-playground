@@ -8,7 +8,11 @@ def msg_part_three: " library!";
 def enrich(fn):
   . + (. | fn);
 
-# Like "enrich" but with an array (rather, a pipeline!) of functions that are applied
-# in order
+# Like "enrich" but with an array (rather, a pipeline!) of functions
+# NOTE: But, are they applied in order?
 def enrich_pipeline(fns):
     reduce fns[] as $fn (.; enrich($fn));
+
+def stage_two: { stage_two: (.stage_one + 1) };
+
+def stage_three: { stage_three: (.stage_two + 1) };
