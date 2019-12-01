@@ -7,7 +7,10 @@
 # echo '"ignored"' | jq 'include "mylib"; my_add_one_n(3)'
 
 # This does work
-echo '"ignored"' | jq 'include "mylib"; exec(my_add_one; 2)'
+#echo '"ignored"' | jq 'include "mylib"; exec(my_add_one; 2)'
+
+# This does work
+echo '"ignored"' | jq 'include "mylib"; exec_fns([my_add_one, my_add_two]; 10)'
 
 # This doesn't work
 #echo '"ignored"' | jq 'include "mylib"; exec_arg0(999 | my_add_one_n)'

@@ -4,6 +4,18 @@ def msg_part_two: " my";
 
 def msg_part_three: " library!";
 
+def exec(fn; target): target | fn;
+
+def exec_fns(fns; target): target | fns[0] | fns[1];
+
+# This is hard to implement, can't figure it out!
+def exec_fns_foreach(fns; subject):
+  [range(0; (fns | length))] |
+  #foreach .[] as $entry (0; 0; $entry)
+  foreach .[] as $entry (0; . | fns[$entry]; .)
+  ;
+  #0 as $init | 999 | foreach fns[] as $fn ($init; 0 | $fn; 0);
+
 # Add the input the result of applying some function "fn" to the input
 def enrich(fn):
   . + (. | fn);
@@ -24,20 +36,24 @@ def accumulate_until_ten(f):
      { result: (.result + ($row | f)) } ;
      . as $res | $row | (f = $res) | if $res.result == 10 then . else empty end);
 
-def accumulate_inverted(data):
+def accumulate_inverted(fns):
   0 as $init | 
-  foreach data[] as $datum ($init; . + $datum; .);
+  foreach fns[] as $fn ($init; exec($fn; 0); .);
 
 
 def my_add_one:
   . + 1;
 
+def my_add_two: . + 2;
+
+def my_add_three: . + 3;
+
+def my_add_four: . + 4;
+
 # Like my_add_one but adds to the value passed as an argument instead of adding to the input.
 # In fact, it complete ignores the input.
 def my_add_one_n(n):
   n + 1;
-
-def exec(fn; target): target | fn;
 
 # Like exec, but trying to curry 
 def exec_arg0(fn; target) : target | fn;
