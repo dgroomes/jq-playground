@@ -16,3 +16,9 @@ def enrich_pipeline(fns):
 def stage_two: { stage_two: (.stage_one + 1) };
 
 def stage_three: { stage_three: (.stage_two + 1) };
+
+def accumulates(f):
+  foreach .[] as $row
+    (0;
+     . + ($row | f) ;
+     . as $x | $row | (f = $x));
