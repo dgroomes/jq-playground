@@ -24,3 +24,6 @@ def accumulate_until_ten(f):
      { result: (.result + ($row | f)) } ;
      . as $res | $row | (f = $res) | if $res.result == 10 then . else empty end);
 
+def accumulate_inverted(data):
+  0 as $init | 
+  foreach data[] as $datum ($init; . + $datum; .);

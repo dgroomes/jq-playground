@@ -3,4 +3,6 @@
 
 # echo '[1,2,3,4]' | jq 'foreach .[] as $i (10; . - $i; .)'
 
-echo '[{"step": "a", "y": 1},{"step": "b", "y": 2},{"step": "c", "y": 3},{"step": "d", "y": 4}]' | jq -c 'include "mylib"; accumulate_until_ten(.y)'
+#echo '[{"step": "a", "y": 1},{"step": "b", "y": 2},{"step": "c", "y": 3},{"step": "d", "y": 4}]' | jq -c 'include "mylib"; accumulate_until_ten(.y)'
+
+echo '"ignored"' | jq 'include "mylib"; accumulate_inverted([1,2,3,4])'
