@@ -58,3 +58,8 @@ def dispatch_inverted(data_fns):
 def exec_fns_foreach(fns; subject):
   [range(0; (fns | length))] |
   foreach .[] as $entry (subject; . | fns[$entry]; .);
+
+# SUCCESS
+def exec_fns_foreach_obj(fns; subject):
+  [range(0; (fns | length))] |
+  foreach .[] as $entry (subject; . + (. | fns[$entry]); .);
