@@ -3,4 +3,4 @@
 
 # echo '[1,2,3,4]' | jq 'foreach .[] as $i (10; . - $i; .)'
 
-echo '[[0,1],[0,2],[0,3],[0,4]]' | jq -c 'include "mylib"; accumulate_until_ten(.[1])'
+echo '[{"x": 0, "y": 1},{"x": 0, "y": 2},{"x": 0, "y": 3},{"x": 0, "y": 4}]' | jq -c 'include "mylib"; accumulate_until_ten(.y)'

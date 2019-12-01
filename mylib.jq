@@ -21,4 +21,4 @@ def accumulate_until_ten(f):
   foreach .[] as $row
     (0;
      . + ($row | f) ;
-     . as $x | $row | (f = $x) | if .[1] == 10 then . else empty end);
+     . as $x | $row | (f = $x) | if .y == 10 then . else empty end);
