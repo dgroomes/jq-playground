@@ -64,6 +64,5 @@ def exec_fns_foreach_obj(fns; subject):
   [range(0; (fns | length))] |
   foreach .[] as $entry (subject; . + (. | fns[$entry]); .);
 
-# UNIMPLEMENTED Get the first named field in an object
-# How? List the 'keys' and then use the first one.
-
+# Get the first field in an object
+def first_field: (. | keys[0]) as $firstfield | .[$firstfield];
