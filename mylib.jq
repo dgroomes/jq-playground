@@ -66,3 +66,15 @@ def exec_fns_foreach_obj(fns; subject):
 
 # Get the first field in an object
 def first_field: (. | keys[0]) as $firstfield | .[$firstfield];
+
+# Use regex and capturing groups to extract the individual words from a string containing exactly three words
+# See https://stedolan.github.io/jq/manual/#RegularexpressionsPCRE
+def extract_words:
+  capture("(?<first_word>[a-z]+) (?<second_word>[a-z]+) (?<third_word>[a-z]+)");
+
+# Like 'extract_words' but using the extended regex format via the "x" flag so that we can break up the regex for
+# readability (in theory, this regex is more readable but it's up to the reader to decide if it is indeed any better).
+def extract_words_extended:
+  capture("(?<first_word>[a-z]+)\\s
+           (?<second_word>[a-z]+)\\s
+           (?<third_word>[a-z]+)"; "x");

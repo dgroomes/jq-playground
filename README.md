@@ -9,7 +9,8 @@
 ### Instructions
 
 * Install `jq`
-* Execute any of the `exec-*.sh` functions to execute `jq` snippets
+* Execute any of the `exec-*.sh` functions to execute `jq` snippets.
+  * For example, `./exec-sort.sh`
 
 ### Notes
 
