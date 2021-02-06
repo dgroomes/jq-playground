@@ -96,5 +96,7 @@ def one:
 def surprise_math:
   . as $original_number |
   one |
-  my_add_one |
-  $original_number;
+  one | my_add_one |
+  . as $result |
+  $original_number |
+  $result;
