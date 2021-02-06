@@ -88,3 +88,13 @@ def extract_words_extended:
   capture("(?<first_word>[a-z]+)\\s
            (?<second_word>[a-z]+)\\s
            (?<third_word>[a-z]+)"; "x");
+
+def one:
+  1;
+
+# Do some surprise (arbitrary) math. Nobody knows what it will return! It's a surprise.
+def surprise_math:
+  . as $original_number |
+  one |
+  my_add_one |
+  $original_number;
