@@ -1,14 +1,24 @@
+# This file contains custom jq functions and variables that I've defined. Using '.jq' files is an effective way
+# to work with jq especially when you require a non-trivial jq expression. It's easier to iteratively develop a
+# sophisticated jq expression by writing it in a file instead of writing it inline in a shell script where you need to
+# deal with additional string escaping.
+
 def msg_part_one: " from";
 
 def msg_part_two: " my";
 
 def msg_part_three: " library!";
 
+# A toy function that just applies a function on some object
 def exec(fn; target): target | fn;
 
+# A prototype for an "execute a pipeline of functions" function
+# This is a prototype because applies exactly two functions instead of a variable number of functions. This implementation
+# needs to be improved to handle the generic case of a variable number of functions.
 def exec_fns(fns; target): target | fns[0] | fns[1];
 
-# Add the input the result of applying some function "fn" to the input
+# Enrich an object.
+# Returns a combination of the original input object with the result of a function applied on the input object
 def enrich(fn):
   . + (. | fn);
   

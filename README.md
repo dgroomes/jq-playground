@@ -16,4 +16,4 @@
 
 See `jq`'s user documentation at <https://stedolan.github.io/jq/manual/> (I reference this constantly!).
 
-I am unable to solve a particular usecase. See `exec-enrich-ordered.sh` for details.
+I am unable to solve a particular use case. See `exec-enrich-ordered.sh` for details.
